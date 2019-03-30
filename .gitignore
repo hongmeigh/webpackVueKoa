@@ -59,7 +59,7 @@ typings/
 # dotenv environment variables file
 .env
 
-dist/
+//dist/
 .DS_Store
 .idea
 yarn.lock
