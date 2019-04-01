@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-    import {homeAjax} from '@api/api-home';
+    import {addEngWord, queryWord, homeAjax} from '@api/api-home';
     export default {
         name: 'Home',
         data() {
@@ -26,6 +26,11 @@
         components: {
         },
         mounted() {
+            queryWord().then((res) => {
+                console.log(res)
+            }).catch((error) => {
+                console.log('error', error)
+            })
             homeAjax().then((res) => {
                 console.log(res)
             })

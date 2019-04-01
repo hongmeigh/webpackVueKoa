@@ -6,7 +6,7 @@
                 <div :class="['angle-down', item.show ? 'angle-rotate-up' : 'angle-rotate-down']"></div>
                 <div @click.stop="" :class="['sub-pop', item.show ? 'pop-show' : 'pop-hide']">
                     <div class="angle-up"></div>
-                    <div class="subtit" v-for="sub in item.subList">
+                    <div class="subtit" v-for="sub in item.subList" @click="toPage(sub.path)">
                         {{sub.name}}
                     </div>
                 </div>
@@ -47,8 +47,10 @@
 
                 });
                 console.log(111, event)
-            }
-
+            },
+            toPage(path) {
+                window.location.href = path;
+            },
         },
     }
 </script>

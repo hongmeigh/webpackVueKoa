@@ -1,9 +1,12 @@
 var Koa = require('koa');
 var Router = require('koa-router');
+const userModel = require('./mysql.js');
 
 var app = new Koa();
 var router = new Router();
 var hhhhhh = require('./api/hhhhhh.js');
+//var addWord = require('./myapis/addWord.js');
+var queryWordList = require('./myapis/queryWordList.js');
 
 router.get('/', (ctx, next) => {
     // ctx.router available
@@ -13,6 +16,7 @@ router.get('/', (ctx, next) => {
     ctx.body = 'Hello World 666';
 });
 router.get('/hh', hhhhhh);
+router.get('/query/list', queryWordList);
 app.use(router.routes());
 app.use(router.allowedMethods());
 

@@ -1,4 +1,5 @@
 export const isProduct = DIST_ENV === 'product';
+export const basePath = isProduct ? "http://localhost:8888" : "http://localhost:8888";
 
 export const H5_ORIGIN = isProduct ? "https://h5.xingbianli.com" : "https://h5.intra.im";
 export const H5_STATIC_ORIGIN = isProduct ? 'https://h5.xingbianli.com/app/app-mercury-admin' : 'https://h5.intra.im/app/app-mercury-admin';
