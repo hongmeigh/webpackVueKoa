@@ -44,10 +44,11 @@ let query = function( sql, values ) {
 // }
 
 const english_table =
-    `create table if not exists english_word(
+    `create table if not exists english_types_word(
      id INT NOT NULL AUTO_INCREMENT,
      word_name VARCHAR(100) NOT NULL,
      word_translation VARCHAR(100) NOT NULL,
+     word_type INT(10) NOT NULL,
      PRIMARY KEY ( id )
     );`;
 // let users =
@@ -97,13 +98,23 @@ createTable(english_table)
 
 //查找所有数据
 let findEnglishData = function() {
-    let _sql = `select * from english_word;`;
+    let _sql = `select * from english_types_word;`;
     return query( _sql )
 };
 //插入数据
 let addEnglishData = function(value) {
-    let _sql = `insert into english_word set word_name=?,word_translation=?;`;
+    let _sql = `insert into english_types_word set word_name=?,word_translation=?,word_type=?;`;
     return query( _sql, value )
+};
+//修改数据
+let modifyEnglishData = function(value) {
+    let _sql = `update english_types_word set word_name=?,word_translation=?,word_type=? where id=?;`;
+    return query( _sql, value )
+};
+//删除数据
+let deleteEnglishData = function(name) {
+    let _sql = `delete from english_types_word where word_name="${name}"`;
+    return query( _sql )
 };
 // // 注册用户
 // let insertData = function( value ) {
@@ -219,7 +230,9 @@ module.exports = {
     query,
     createTable,
     findEnglishData,
-    addEnglishData
+    addEnglishData,
+    modifyEnglishData,
+    deleteEnglishData
     // insertData,
     // deleteUserData,
     // findUserData,

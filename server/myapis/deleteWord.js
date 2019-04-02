@@ -1,10 +1,10 @@
-module.exports = addWord;
-const { addEnglishData } = require('../mysql.js');
+module.exports = deleteWord;
+const { deleteEnglishData } = require('../mysql.js');
 
-async function addWord (ctx) {
+async function deleteWord (ctx) {
     console.log(ctx.request.body);
     const data = ctx.request.body;
-    await addEnglishData([data.word, data.translation, data.type]).then((data) => {
+    await deleteEnglishData(data.word).then((data) => {
         return data;
     }).catch((error) => {
         console.error(error)
