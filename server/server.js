@@ -1,15 +1,15 @@
-var Koa = require('koa');
-var Router = require('koa-router');
-var bodyParser = require('koa-bodyparser');
+const Koa = require('koa');
+const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 const userModel = require('./mysql.js');
-var router = new Router();
-var hhhhhh = require('./api/hhhhhh.js');
-var addWord = require('./myapis/addWord.js');
-var queryWordList = require('./myapis/queryWordList.js');
-var modifyWord = require('./myapis/modifyWord.js');
-var deleteWord = require('./myapis/deleteWord.js');
+const router = new Router();
+const hhhhhh = require('./api/hhhhhh.js');
+const addWord = require('./myapis/addWord.js');
+const queryWordList = require('./myapis/queryWordList.js');
+const modifyWord = require('./myapis/modifyWord.js');
+const deleteWord = require('./myapis/deleteWord.js');
 
-var app = new Koa();
+const app = new Koa();
 app.use(async (ctx, next)=> {
     ctx.set('Access-Control-Allow-Origin', 'http://localhost:8888');
     ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');

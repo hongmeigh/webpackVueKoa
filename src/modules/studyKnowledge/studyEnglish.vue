@@ -42,37 +42,33 @@
         mounted() {
             queryWord().then((res) => {
                 console.log(res);
-                this.fruitList = res.data.map((item) => {
-                    return {
-                        ...item,
-                        word: item.word_name,
-                        translation: item.word_translation
-                    }
-                });
+                if (res.code === 200) {
+                    this.fruitList = res.data.map((item) => {
+                        return {
+                            ...item,
+                            word: item.word_name,
+                            translation: item.word_translation
+                        }
+                    });
+                }
             }).catch((error) => {
-                console.log('error', error)
+                console.log('error', error);
+                this.$message.error('查询列表出错')
             })
-            /*homeAjax().then((res) => {
-                console.log(res)
-            })*/
-            /*this.promiseFun().then((res) => {
-                console.log(res)
-            }).catch((error) => {
-                console.log(error)
-            });
-            homeAjax().then((res) => {
-                console.log(res)
-            })*/
         },
         methods: {
             add(data, index) {
                 addEngWord(data).then((res) => {
                     console.log(res);
                     if (res.code === 200) {
-                        this.fruitList.splice(index, 1, {...data, isModify: false})
+                        this.fruitList.splice(index, 1, {...data, isModify: false});
+                        this.$message.success('添加成功')
+                    } else {
+                        this.$message.error(res.errMag || '添加失败')
                     }
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error);
+                    this.$message.error('添加失败')
                 })
             },
             deleteItem(item) {
@@ -82,9 +78,12 @@
                         setTimeout(() => {
                             window.location.reload();
                         }, 1000)
+                    } else {
+                        this.$message.error(res.errMag || '删除失败')
                     }
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error);
+                    this.$message.error(error.message || '删除失败')
                 })
             },
             modify(item, index) {
@@ -95,9 +94,13 @@
                     console.log(res);
                     if (res.code === 200) {
                         this.fruitList.splice(index, 1, {...item, isModify: false});
+                        this.$message.success('更新成功')
+                    } else {
+                        this.$message.error(res.errMag || '更新失败')
                     }
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error);
+                    this.$message.error(error.message || '更新失败')
                 })
             },
             addData() {
